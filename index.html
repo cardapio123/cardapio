@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Digital</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;700&display=swap');
+
+        body {
+            font-family: 'Oswald', sans-serif;
+            background: #e9f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+            overflow-y: auto;
+            max-height: 90vh;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        h1 {
+            color: #2d6187;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .navbar_links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .navbar_links li {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f0f8ff;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar_links li:hover {
+            background-color: #d0e7ff;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            transition: transform 0.6s ease;
+        }
+
+        .menu-category {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .menu-category.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-category h2 {
+            font-size: 1.8em;
+            color: #4a7c94;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .item-info {
+            text-align: center;
+        }
+
+        .item-info strong {
+            font-size: 1.2em;
+            color: #2d6187;
+        }
+
+        .item-info span {
+            display: block;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .item-price {
+            color: #27ae60;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            display: none;
+            font-size: 0.9em;
+            color: #333;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .menu-item.active .description {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cardápio Digital</h1>
+        <ul class="navbar_links">
+            <li onclick="showCategory('salgados')">Salgados</li>
+            <li onclick="showCategory('doces')">Doces</li>
+            <li onclick="showCategory('gelados')">Gelados</li>
+            <li onclick="showCategory('bebidas')">Bebidas</li>
+        </ul>
+        <ul class="menu" id="menuList">
+            <li class="menu-category show" id="salgados">
+                <h2>Salgados</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="coxinha.jpg" alt="Coxinha">
+                        <div class="item-info">
+                            <strong>Coxinha</strong>
+                        </div>
+                        <div class="item-price">R$ 5,00</div>
+                        <div class="description">Sabores: Frango, Carne, Calabresa.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="pastel.jpg" alt="Pastel">
+                        <div class="item-info"> 
+                            <strong>Pastel</strong>
+                        </div>
+                        <div class="item-price">R$ 6,00</div>
+                        <div class="description">Sabores: Carne, Queijo, Frango, Pizza.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="empada.jpg" alt="Empada">
+                        <div class="item-info">
+                            <strong>Empada</strong>
+                        </div>
+                        <div class="item-price">R$ 4,00</div>
+                        <div class="description">Sabores: Frango, Palmito.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="quibe.jpg" alt="Quibe">
+                        <div class="item-info">
+                            <strong>Quibe</strong>
+                        </div>
+                        <div class="item-price">R$ 4,50</div>
+                        <div class="description">Quibe frito com carne e tempero.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="bolinho_de_bacalhau.jpg" alt="Bolinho de Bacalhau">
+                        <div class="item-info">
+                            <strong>Bolinho de Bacalhau</strong>
+                        </div>
+                        <div class="item-price">R$ 7,00</div>
+                        <div class="description">Bolinho frito com bacalhau desfiado.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="tapioca.jpg" alt="Tapioca">
+                        <div class="item-info">
+                            <strong>Tapioca</strong>
+                        </div>
+                        <div class="item-price">R$ 5,50</div>
+                        <div class="description">Recheio a gosto: queijo, frango, etc.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="pao_de_quijo.jpg" alt="Pão de Queijo">
+                        <div class="item-info">
+                            <strong>Pão de Queijo</strong>
+                        </div>
+                        <div class="item-price">R$ 3,00</div>
+                        <div class="description">Pão de queijo fresquinho e crocante.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="sandwich.jpg" alt="Sanduíche">
+                        <div class="item-info">
+                            <strong>Sanduíche</strong>
+                        </div>
+                        <div class="item-price">R$ 8,00</div>
+                        <div class="description">Sanduíche com recheio variado.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="biscoito_de_polvilho.jpg" alt="Biscoito de Polvilho">
+                        <div class="item-info">
+                            <strong>Biscoito de Polvilho</strong>
+                        </div>
+                        <div class="item-price">R$ 2,50</div>
+                        <div class="description">Biscoito leve e crocante.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="torta.jpg" alt="Torta Salgada">
+                        <div class="item-info">
+                            <strong>Torta Salgada</strong>
+                        </div>
+                        <div class="item-price">R$ 6,50</div>
+                        <div class="description">Torta recheada com carne ou frango.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="menu-category show" id="doces">
+                <h2>Doces</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="brigadeiro.jpg" alt="Brigadeiro">
+                        <div class="item-info">
+                            <strong>Brigadeiro</strong>
+                        </div>
+                        <div class="item-price">R$ 3,00</div>
+                        <div class="description">Doce de chocolate com granulado.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="beijinho.jpg" alt="Beijinho">
+                        <div class="item-info">
+                            <strong>Beijinho</strong>
+                        </div>
+                        <div class="item-price">R$ 3,00</div>
+                        <div class="description">Doce de coco com granulado.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="pudim.jpg" alt="Pudim">
+                        <div class="item-info">
+                            <strong>Pudim</strong>
+                        </div>
+                        <div class="item-price">R$ 5,00</div>
+                        <div class="description">Pudim de leite condensado.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="torta_de_limao.jpg" alt="Torta de Limão">
+                        <div class="item-info">
+                            <strong>Torta de Limão</strong>
+                        </div>
+                        <div class="item-price">R$ 6,00</div>
+                        <div class="description">Torta com creme de limão e merengue.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="bolo_de_cenoura.jpg" alt="Bolo de Cenoura">
+                        <div class="item-info">
+                            <strong>Bolo de Cenoura</strong>
+                        </div>
+                        <div class="item-price">R$ 8,00</div>
+                        <div class="description">Bolo de cenoura com cobertura de chocolate.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="pavê.jpg" alt="Pavê">
+                        <div class="item-info">
+                            <strong>Pavê</strong>
+                        </div>
+                        <div class="item-price">R$ 7,50</div>
+                        <div class="description">Pavê de chocolate com biscoitos.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="torta_de_morango.jpg" alt="Torta de Morango">
+                        <div class="item-info">
+                            <strong>Torta de Morango</strong>
+                        </div>
+                        <div class="item-price">R$ 7,00</div>
+                        <div class="description">Torta com morangos frescos.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="quindim.jpg" alt="Quindim">
+                        <div class="item-info">
+                            <strong>Quindim</strong>
+                        </div>
+                        <div class="item-price">R$ 4,00</div>
+                        <div class="description">Doce de gema de ovo e coco.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="branquinho.jpg" alt="Branquinho">
+                        <div class="item-info">
+                            <strong>Branquinho</strong>
+                        </div>
+                        <div class="item-price">R$ 3,50</div>
+                        <div class="description">Doce de coco com leite condensado.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="torta_de_nozes.jpg" alt="Torta de Nozes">
+                        <div class="item-info">
+                            <strong>Torta de Nozes</strong>
+                        </div>
+                        <div class="item-price">R$ 9,00</div>
+                        <div class="description">Torta recheada com nozes e creme.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="menu-category show" id="gelados">
+                <h2>Gelados</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="sorvete.jpg" alt="Sorvete">
+                        <div class="item-info">
+                            <strong>Sorvete</strong>
+                        </div>
+                        <div class="item-price">R$ 5,00</div>
+                        <div class="description">Sabores variados: chocolate, baunilha, morango.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="picolé.jpg" alt="Picolé">
+                        <div class="item-info">
+                            <strong>Picolé</strong>
+                        </div>
+                        <div class="item-price">R$ 3,00</div>
+                        <div class="description">Picolé de frutas naturais.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="açaí.jpg" alt="Açaí">
+                        <div class="item-info">
+                            <strong>Açaí</strong>
+                        </div>
+                        <div class="item-price">R$ 6,00</div>
+                        <div class="description">Açaí com granola e banana.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="geladinho.jpg" alt="Geladinho">
+                        <div class="item-info">
+                            <strong>Geladinho</strong>
+                        </div>
+                        <div class="item-price">R$ 2,00</div>
+                        <div class="description">Geladinho de diversos sabores.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="sorvete_de_pistache.jpg" alt="Sorvete de Pistache">
+                        <div class="item-info">
+                            <strong>Sorvete de Pistache</strong>
+                        </div>
+                        <div class="item-price">R$ 7,00</div>
+                        <div class="description">Sorvete de pistache cremoso.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="gelato.jpg" alt="Gelato">
+                        <div class="item-info">
+                            <strong>Gelato</strong>
+                        </div>
+                        <div class="item-price">R$ 6,50</div>
+                        <div class="description">Gelato artesanal de frutas.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="milkshake.jpg" alt="Milkshake">
+                        <div class="item-info">
+                            <strong>Milkshake</strong>
+                        </div>
+                        <div class="item-price">R$ 8,00</div>
+                        <div class="description">Milkshake cremoso de chocolate.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="sorvete_de_framboesa.jpg" alt="Sorvete de Framboesa">
+                        <div class="item-info">
+                            <strong>Sorvete de Framboesa</strong>
+                        </div>
+                        <div class="item-price">R$ 6,50</div>
+                        <div class="description">Sorvete refrescante de framboesa.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="sorvete_de_manga.jpg" alt="Sorvete de Manga">
+                        <div class="item-info">
+                            <strong>Sorvete de Manga</strong>
+                        </div>
+                        <div class="item-price">R$ 6,00</div>
+                        <div class="description">Sorvete de manga tropical.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="menu-category show" id="bebidas">
+                <h2>Bebidas</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <img src="refrigerante.jpg" alt="Refrigerante">
+                        <div class="item-info">
+                            <strong>Refrigerante</strong>
+                        </div>
+                        <div class="item-price">R$ 4,00</div>
+                        <div class="description">Refrigerante sabor cola, limão ou laranja.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="suco.jpg" alt="Suco">
+                        <div class="item-info">
+                            <strong>Suco Natural</strong>
+                        </div>
+                        <div class="item-price">R$ 5,00</div>
+                        <div class="description">Suco natural de frutas da estação.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="agua.jpg" alt="Água">
+                        <div class="item-info">
+                            <strong>Água Mineral</strong>
+                        </div>
+                        <div class="item-price">R$ 2,00</div>
+                        <div class="description">Água mineral sem gás.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="cafe.jpg" alt="Café">
+                        <div class="item-info">
+                            <strong>Café</strong>
+                        </div>
+                        <div class="item-price">R$ 3,00</div>
+                        <div class="description">Café coado forte.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="cha.jpg" alt="Chá">
+                        <div class="item-info">
+                            <strong>Chá</strong>
+                        </div>
+                        <div class="item-price">R$ 3,50</div>
+                        <div class="description">Chá quente ou gelado.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="energético.jpg" alt="Energético">
+                        <div class="item-info">
+                            <strong>Energético</strong>
+                        </div>
+                        <div class="item-price">R$ 6,00</div>
+                        <div class="description">Bebida energética de sabor variado.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="vitamina.jpg" alt="Vitamina">
+                        <div class="item-info">
+                            <strong>Vitamina</strong>
+                        </div>
+                        <div class="item-price">R$ 7,00</div>
+                        <div class="description">Vitamina de frutas com leite.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="milkshake_bananna.jpg" alt="Milkshake de Banana">
+                        <div class="item-info">
+                            <strong>Milkshake de Banana</strong>
+                        </div>
+                        <div class="item-price">R$ 8,50</div>
+                        <div class="description">Milkshake de banana com sorvete.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="sangria.jpg" alt="Sangria">
+                        <div class="item-info">
+                            <strong>Sangria</strong>
+                        </div>
+                        <div class="item-price">R$ 10,00</div>
+                        <div class="description">Bebida refrescante com vinho e frutas.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="limonada.jpg" alt="Limonada">
+                        <div class="item-info">
+                            <strong>Limonada</strong>
+                        </div>
+                        <div class="item-price">R$ 4,50</div>
+                        <div class="description">Limonada refrescante e gelada.<br>SEG, QUAR, SEX.</div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <script>
+        function showCategory(categoryId) {
+            const menuList = document.getElementById('menuList');
+            const categories = ['salgados', 'doces', 'gelados', 'bebidas'];
+
+            // Remove a classe "show" (para resetar animação)
+            document.querySelectorAll('.menu-category').forEach(category => {
+                category.classList.remove('show');
+            });
+
+            // Remove a categoria selecionada do array
+            const selectedCategoryIndex = categories.indexOf(categoryId);
+            const reorderedCategories = categories.splice(selectedCategoryIndex, 1);
+
+            // Coloca a categoria selecionada no início e reordena as outras
+            categories.forEach(category => {
+                reorderedCategories.push(category);
+            });
+
+            // Reorganiza a ordem no DOM com animação
+            reorderedCategories.forEach((category, index) => {
+                const categoryElement = document.getElementById(category);
+                menuList.appendChild(categoryElement);
+                
+                // Adiciona a classe "show" para aplicar a animação somente ao clicar
+                setTimeout(() => {
+                    categoryElement.classList.add('show');
+                }, 100 * index); // Atraso para efeito gradual
+            });
+        }
+
+        // Evento de clique para mostrar/ocultar descrições
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
