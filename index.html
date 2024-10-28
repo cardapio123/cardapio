@@ -161,7 +161,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Cardápio Digital</h1>
+        <h1>Lanchonete <br>CEEP José Farias Brito</h1>
         <ul class="navbar_links">
             <li onclick="showCategory('salgados')">Salgados</li>
             <li onclick="showCategory('sanduiches')">Sanduíches</li>
@@ -549,7 +549,7 @@
     <script>
         function showCategory(categoryId) {
             const menuList = document.getElementById('menuList');
-            const categories = ['salgados', 'doces', 'gelados', 'bebidas'];
+            const categories = ['salgados','sanduiches', 'doces', 'gelados', 'bebidas'];
 
             // Remove a classe "show" (para resetar animação)
             document.querySelectorAll('.menu-category').forEach(category => {
