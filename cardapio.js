@@ -1,4 +1,4 @@
-<script>
+
         function showCategory(categoryId) {
             const menuList = document.getElementById('menuList');
             const categories = ['salgados','sanduiches', 'doces', 'gelados', 'bebidas'];
@@ -35,4 +35,4 @@
                 item.classList.toggle('active');
             });
         });
-    </script>
+   
