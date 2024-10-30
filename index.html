@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardápio Digital</title>
+    <title>Cardápio CEEP JFB</title>
     
 </head>
 <body>
@@ -11,15 +11,13 @@
     <div class="container">
         <h1>Lanchonete <br>CEEP José Farias Brito</h1>
         <ul class="navbar_links">
-            <li onclick="showCategory('salgados')">Salgados</li>
-            <li onclick="showCategory('sanduiches')">Sanduíches</li>
-            <li onclick="showCategory('gelados')">Gelados</li>
+            <li onclick="showCategory('salgados')">Salgados e Sanduíches</li>
+            <li onclick="showCategory('gelados')">Gelados e Doces</li>
             <li onclick="showCategory('bebidas')">Bebidas</li>
-            <li onclick="showCategory('doces')">Doces</li>
         </ul>
         <ul class="menu" id="menuList">
             <li class="menu-category show" id="salgados">
-                <h2>Salgados</h2>
+                <h2>Salgados e Sanduíches</h2>
                 <div class="menu-items">
                     <div class="menu-item">
                         <img src="coxinha.jpg" alt="Coxinha">
@@ -77,12 +75,6 @@
                         <div class="item-price">R$ 2,50</div>
                         <div class="description">---------------------</div>
                     </div>
-                </div>
-            </li>
-
-            <li class="menu-category show" id="sanduiches">
-                <h2>Sanduíches</h2>
-                <div class="menu-items">
                     <div class="menu-item">
                         <img src="brigadeiro.jpg" alt="Brigadeiro">
                         <div class="item-info">
@@ -150,9 +142,8 @@
                 </div>
             </li>
 
-
             <li class="menu-category show" id="gelados">
-                <h2>Gelados</h2>
+                <h2>Gelados e Doces</h2>
                 <div class="menu-items">
                     <div class="menu-item">
                         <img src="sorvete.jpg" alt="Sorvete">
@@ -217,6 +208,14 @@
                         </div>
                         <div class="item-price">R$ 3,00</div>
                         <div class="description">-----------------------</div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="refrigerante.jpg" alt="Refrigerante">
+                        <div class="item-info">
+                            <strong>Fatia de Bolo</strong>
+                        </div>
+                        <div class="item-price">R$ 3,00</div>
+                        <div class="description">-------------------------</div>
                     </div>
                 </div>
             </li>
@@ -377,20 +376,6 @@
                         <div class="description">Limonada refrescante e gelada.<br>SEG, QUAR, SEX.</div>
                     </div>
                 </div>
-            </li>
-            <li class="menu-category show" id="doces">
-                <h2>Doces</h2>
-                <div class="menu-items">
-                    <div class="menu-item">
-                        <img src="refrigerante.jpg" alt="Refrigerante">
-                        <div class="item-info">
-                            <strong>Fatia de Bolo</strong>
-                        </div>
-                        <div class="item-price">R$ 3,00</div>
-                        <div class="description">-------------------------</div>
-                    </div>
-            </li>
-
         </ul>
     </div>
 
