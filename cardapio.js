@@ -1,4 +1,4 @@
-
+document.addEventListener("DOMContentLoaded", function() {
         function showCategory(categoryId) {
             const menuList = document.getElementById('menuList');
             const categories = ['salgados','gelados','bebidas'];
@@ -27,7 +27,7 @@
                     categoryElement.classList.add('show');
                 }, 100 * index); // Atraso para efeito gradual
             });
-        }
+        }};
 
         // Evento de clique para mostrar/ocultar descrições
         document.querySelectorAll('.menu-item').forEach(item => {
