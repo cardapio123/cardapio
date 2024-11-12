@@ -149,9 +149,8 @@ h1 {
     text-align: center;
 }
 
-.menu-item.active .description {
+.menu-item.active.description {
     display: block;
 }
 
-            display: block;
-        }
+           
