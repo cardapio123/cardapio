@@ -13,7 +13,11 @@ function showCategory(categoryId) {
     if (categoryId === 'gelados') {
         // Quando clicar em "gelados", coloca "bebidas" logo após
         reorderedCategories = ['gelados', 'bebidas', 'salgados'];
-    } else {
+    }else if (categoryId === 'bebidas'){
+         reorderedCategories = ['bebidas', 'salgados','gelados'];
+    }
+    
+    else{
         // Caso contrário, mantém a ordem original
         reorderedCategories = categories;
     }
