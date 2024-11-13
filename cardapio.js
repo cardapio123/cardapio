@@ -1,7 +1,7 @@
 function showCategory(categoryId) {
     const menuList = document.getElementById('menuList');
     const categories = ['salgados', 'gelados', 'bebidas'];
-    
+
     // Remove a classe "show" (para resetar animação)
     document.querySelectorAll('.menu-category').forEach(category => {
         category.classList.remove('show');
@@ -35,5 +35,16 @@ function showCategory(categoryId) {
 document.querySelectorAll('.menu-item').forEach(item => {
     item.addEventListener('click', () => {
         item.classList.toggle('active');
+        console.log('Item clicado:', item); // Log para verificar clique
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM totalmente carregado e analisado');
+    document.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+            console.log('Item clicado:', item);
+        });
     });
 });
