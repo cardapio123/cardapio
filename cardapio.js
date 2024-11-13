@@ -10,18 +10,17 @@ function showCategory(categoryId) {
     // Lógica para reorganizar a ordem das categorias
     let reorderedCategories;
     
-    if (categoryId === 'gelados') {
-        // Quando clicar em "gelados", coloca "bebidas" logo após
-        reorderedCategories = ['gelados', 'bebidas', 'salgados'];
-    }else if (categoryId === 'bebidas'){
-         reorderedCategories = ['bebidas', 'salgados','gelados'];
+   if (categoryId === 'bebidas') {
+        // Quando clica em "bebidas", a ordem é: Bebidas, Salgados, Doces
+        reorderedCategories = ['bebidas', 'salgados', 'doces'];
+    } else if (categoryId === 'salgados') {
+        // Quando clica em "salgados", a ordem é: Salgados, Bebidas, Doces
+        reorderedCategories = ['salgados', 'bebidas', 'doces'];
+    } else if (categoryId === 'doces') {
+        // Quando clica em "doces", a ordem é: Doces, Salgados, Bebidas
+        reorderedCategories = ['doces', 'salgados', 'bebidas'];
     }
     
-    else{
-        // Caso contrário, mantém a ordem original
-        reorderedCategories = categories;
-    }
-
     // Reorganiza a ordem no DOM com animação
     reorderedCategories.forEach((category, index) => {
         const categoryElement = document.getElementById(category);
