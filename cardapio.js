@@ -1,6 +1,6 @@
         function showCategory(categoryId) {
             const menuList = document.getElementById('menuList');
-            const categories = ['salgados', 'doces', 'gelados', 'bebidas'];
+            const categories = ['salgados', 'gelados', 'bebidas'];
 
             // Remove a classe "show" (para resetar animação)
             document.querySelectorAll('.menu-category').forEach(category => {
