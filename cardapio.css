@@ -145,8 +145,10 @@ h1 {
     margin-top: 10px;
     text-align: center;
 }
-
-
+.menu-item.active{
+    background-color: #d0e7ff;
+    border-radius: 10px;
+}
 
 .menu-item.active.description {
     display: block;
