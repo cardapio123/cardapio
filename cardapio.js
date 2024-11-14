@@ -1,4 +1,4 @@
-   function showCategory(categoryId) {
+    function showCategory(categoryId) {
         const menuList = document.getElementById('menuList');
         const categories = ['salgados', 'gelados', 'bebidas'];
         const reorderedCategories = [];
@@ -9,7 +9,7 @@
         } else if (categoryId === 'salgados') {
             reorderedCategories.push('salgados', 'bebidas', 'gelados');
         } else {
-             reorderedCategories.push('gelados', 'bebidas', 'salgados');
+            reorderedCategories.push('gelados', 'bebidas', 'salgados');
         }
 
         // Aplicar a animação de saída em todas as categorias
@@ -22,19 +22,23 @@
 
         // Esperar a animação de saída e reorganizar a ordem dos elementos
         setTimeout(() => {
-            reorderedCategories.forEach(cat => {
+            reorderedCategories.forEach((cat, index) => {
                 const categoryElement = document.getElementById(cat);
                 menuList.appendChild(categoryElement);
-            });
 
-            // Aplicar animação de entrada nas categorias reorganizadas
-            reorderedCategories.forEach(cat => {
-                const categoryElement = document.getElementById(cat);
+                // Aplica a animação de entrada gradualmente
                 setTimeout(() => {
                     categoryElement.classList.add('show');
                     categoryElement.style.opacity = '1';
                     categoryElement.style.transform = 'translateY(0)';
-                }, 100);
+                }, 100 * index); // Atraso para efeito gradual
             });
         }, 50); // Tempo da animação de saída
     }
+
+    // Evento de clique para mostrar/ocultar descrições
+    document.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
