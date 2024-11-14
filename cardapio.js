@@ -18,7 +18,7 @@ function showCategory(categoryId) {
         reorderedCategories = ['salgados', 'bebidas', 'doces'];
     } else if (categoryId === 'doces') {
         // Quando clica em "doces", a ordem é: Doces, Salgados, Bebidas
-        reorderedCategories = ['doces', 'salgados', 'bebidas'];
+        reorderedCategories = ['doces', 'bebidas', 'salgados'];
     }
 
     // Reorganiza a ordem no DOM com animação
