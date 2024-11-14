@@ -1,26 +1,26 @@
 function showCategory(categoryId) {
     const menuList = document.getElementById('menuList');
-    const categories = ['salgados', 'gelados', 'bebidas'];
+    const categories = ['salgados', 'bebidas', 'doces'];
 
     // Remove a classe "show" (para resetar animação)
     document.querySelectorAll('.menu-category').forEach(category => {
         category.classList.remove('show');
     });
 
-    // Lógica para reorganizar a ordem das categorias
+    // Lógica para reorganizar a ordem das categorias com base no clique
     let reorderedCategories;
     
-   if (categoryId === 'bebidas') {
+    if (categoryId === 'bebidas') {
         // Quando clica em "bebidas", a ordem é: Bebidas, Salgados, Doces
         reorderedCategories = ['bebidas', 'salgados', 'doces'];
     } else if (categoryId === 'salgados') {
         // Quando clica em "salgados", a ordem é: Salgados, Bebidas, Doces
         reorderedCategories = ['salgados', 'bebidas', 'doces'];
     } else if (categoryId === 'doces') {
-        // Quando clica em "doces", a ordem é: Doces, Salgados, Bebidas
-        reorderedCategories = ['doces', 'salgados', 'bebidas'];
+        // Quando clica em "doces", a ordem é: Salgados, Bebidas, Doces
+        reorderedCategories = ['salgados', 'bebidas', 'doces'];
     }
-    
+
     // Reorganiza a ordem no DOM com animação
     reorderedCategories.forEach((category, index) => {
         const categoryElement = document.getElementById(category);
