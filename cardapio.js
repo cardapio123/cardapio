@@ -9,7 +9,7 @@
         } else if (categoryId === 'salgados') {
             reorderedCategories.push('salgados', 'bebidas', 'gelados');
         } else {
-            reorderedCategories.push('gelados', 'salgados', 'bebidas');
+             reorderedCategories.push('gelados', 'bebidas', 'salgados');
         }
 
         // Aplicar a animação de saída em todas as categorias
