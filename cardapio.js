@@ -1,41 +1,40 @@
-function showCategory(categoryId) {
-    const menuList = document.getElementById('menuList');
-    const categories = ['salgados', 'bebidas', 'doces'];
+   function showCategory(categoryId) {
+        const menuList = document.getElementById('menuList');
+        const categories = ['salgados', 'gelados', 'bebidas'];
+        const reorderedCategories = [];
 
-    // Remove a classe "show" (para resetar animação)
-    document.querySelectorAll('.menu-category').forEach(category => {
-        category.classList.remove('show');
-    });
+        // Definir a ordem das categorias conforme o clique
+        if (categoryId === 'bebidas') {
+            reorderedCategories.push('bebidas', 'salgados', 'gelados');
+        } else if (categoryId === 'salgados') {
+            reorderedCategories.push('salgados', 'bebidas', 'gelados');
+        } else {
+            reorderedCategories.push('gelados', 'salgados', 'bebidas');
+        }
 
-    // Lógica para reorganizar a ordem das categorias com base no clique
-    let reorderedCategories;
+        // Aplicar a animação de saída em todas as categorias
+        categories.forEach(cat => {
+            const element = document.getElementById(cat);
+            element.classList.remove('show');
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(-20px)';
+        });
 
-    if (categoryId === 'bebidas') {
-        // Quando clica em "bebidas", a ordem é: Bebidas, Salgados, Doces
-        reorderedCategories = ['bebidas', 'salgados', 'doces'];
-    } else if (categoryId === 'salgados') {
-        // Quando clica em "salgados", a ordem é: Salgados, Bebidas, Doces
-        reorderedCategories = ['salgados', 'bebidas', 'doces'];
-    } else if (categoryId === 'doces') {
-        // Quando clica em "doces", a ordem é: Doces, Salgados, Bebidas
-        reorderedCategories = ['doces', 'bebidas', 'salgados'];
-    }
-
-    // Reorganiza a ordem no DOM com animação
-    reorderedCategories.forEach((category, index) => {
-        const categoryElement = document.getElementById(category);
-        menuList.appendChild(categoryElement);
-        
-        // Adiciona a classe "show" para aplicar a animação somente ao clicar
+        // Esperar a animação de saída e reorganizar a ordem dos elementos
         setTimeout(() => {
-            categoryElement.classList.add('show');
-        }, 100 * index); // Atraso para efeito gradual
-    });
-}
+            reorderedCategories.forEach(cat => {
+                const categoryElement = document.getElementById(cat);
+                menuList.appendChild(categoryElement);
+            });
 
-// Evento de clique para mostrar/ocultar descrições
-document.querySelectorAll('.menu-item').forEach(item => {
-    item.addEventListener('click', () => {
-        item.classList.toggle('active');
-    });
-});
+            // Aplicar animação de entrada nas categorias reorganizadas
+            reorderedCategories.forEach(cat => {
+                const categoryElement = document.getElementById(cat);
+                setTimeout(() => {
+                    categoryElement.classList.add('show');
+                    categoryElement.style.opacity = '1';
+                    categoryElement.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        }, 50); // Tempo da animação de saída
+    }
