@@ -1,17 +1,4 @@
-# 🍽️ Cardápio Interativo
-
-Este é um **projeto de cardápio online** construído com **HTML, CSS e JavaScript**, pensado para demonstrar um menu interativo simples, visualmente organizado e responsivo.
-
-## 📌 Sobre o Projeto
-
-O Cardápio Interativo permite ao usuário visualizar pratos e itens de um restaurante de forma clara e agradável.  
-Ele foi desenvolvido com foco em **estrutura de frontend básica**, com **layout responsivo** e **interações via JavaScript**, ideal para estudos e portfólio.
-
-## 🛠️ Tecnologias Utilizadas
-
-- **HTML5** – Estruturação das páginas  
-- **CSS3** – Estilos e layout  
-- **JavaScript** – Interatividade do menu  
-
-## 📁 Estrutura do Projeto
-
+# Meu Portifólio
+Me chamo João Vitor Pereira, sou estudante de Tecnologia da Informação e curso Sistemas de Informação na Estácio.
+Este portfólio foi criado para apresentar minha evolução por meio de projetos práticos, refletindo meu aprendizado contínuo e meu desenvolvimento profissional.
+Possuo conhecimentos em desenvolvimento web (HTML, CSS e JavaScript), além de experiência com Python, Java e C, aplicando esses conhecimentos na construção de soluções e projetos acadêmicos e pessoais.
